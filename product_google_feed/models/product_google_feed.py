@@ -157,15 +157,15 @@ class product_google_feed(models.Model):
                 item.append(mpn)
 
             title = etree.Element('title')
-            title.text = product_id['name']
+            title.text = product_id['name'][1].upper()  +  product_id['name'][2:].lower()
             item.append(title)
 
             description = etree.Element('description')
             if product_id['description']:
                 description.text = re.sub(
-                    CLEANTAG, '', product_id['description'])
+                    CLEANTAG, '', product_id['description'][1].upper()  +  product_id['description'][2:].lower())
             else:
-                description.text = product_id['name']
+                description.text = product_id['name'][1].upper()  +  product_id['name'][2:].lower()
             item.append(description)
 
             availability = etree.Element(
